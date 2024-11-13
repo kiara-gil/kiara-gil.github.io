@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  scroll-snap-type: y mandatory;
+  /* Enables snapping on the y-axis */
+  overflow-y: auto;
+  /* Allows scrolling */
+}
+
+.content {
+  max-width: 80%;
+  /* Max width to avoid text stretching too far on wide screens */
+  text-align: center;
+
+}
+
+.section {
+  min-height: 100vh;
+  width: 100%;
+  scroll-snap-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Snap each section to the start of the viewport */
+}
+
+.title {
+  font-family: 'Courier New', sans-serif;
+  font-weight: bold;
+  font-size: max(3.75vw, 15px);
+  /* Scalable font size based on the viewport width */
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: 'Courier New', sans-serif;
+  font-size: max(1.25vw, 12px);
+  /* Slightly smaller than the main message */
+  color: white;
+  margin-top: 20px;
+  line-height: 1.4;
+  font-weight: normal;
+  text-transform: none;
+}
+
+.section1 {
+  background-color: #1e2e16;
+  /* Dark blue */
+}
+
+.section2 {
+  background-color: #456a35;
+  /* Medium blue */
+}
+
+.section3 {
+  background-color: #93bf80;
+  /* Light blue */
+}
+
+.section4 {
+  background-color: #c0dab6;
+  /* Light blue */
+}
