@@ -34,8 +34,8 @@ body {
 
 /* Carousel Styles */
 .carousel {
-    width: 50%;
-    max-width: 400px;
+    width: 65%;
+    max-width: 500px;
     position: relative;
     overflow: hidden;
     margin-bottom: 30px; /* Space between carousel and form */
@@ -97,11 +97,8 @@ body {
         padding-top: 80%; /* Maintain the 5:4 aspect ratio */
     }
 
-    .form-group input, 
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 4px;
+    .form-container {
+        max-width: 400px;
     }
 }
 
@@ -113,7 +110,7 @@ body {
     padding: 20px;
     border-radius: 6px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
     text-align: center;
     margin-bottom: 30px; /* Added space after the form */
@@ -127,7 +124,7 @@ body {
 .form-group input, 
 .form-group select,
 .form-group textarea {
-    width: 95%;
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
