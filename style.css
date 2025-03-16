@@ -96,6 +96,13 @@ body {
     .carousel::before {
         padding-top: 80%; /* Maintain the 5:4 aspect ratio */
     }
+
+    .form-group input, 
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 4px;
+    }
 }
 
 
