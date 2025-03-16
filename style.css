@@ -87,6 +87,19 @@ body {
     right: 10px;
 }
 
+@media (max-width: 600px) {
+    .carousel {
+        width: 100%; /* Match the form width */
+        max-width: 400px; /* Same max-width as the form */
+    }
+
+    .carousel::before {
+        padding-top: 80%; /* Maintain the 5:4 aspect ratio */
+    }
+}
+
+
+
 /* Form Styles */
 .form-container {
     background: #fdf7e3;
