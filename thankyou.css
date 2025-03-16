@@ -1,0 +1,53 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    background-color: #f8f1e4;
+}
+
+.thank-you-container {
+    text-align: center;
+    margin-top: 50px; /* Push everything lower from the top */
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #c0392b;
+    font-size: 32px;
+}
+
+.header p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px; /* Add space between h1 and p */
+}
+
+.thank-you-button {
+    margin-top: 30px; /* Add space between content and button */
+}
+
+.thank-you-button .submit-button {
+    padding: 10px 20px;
+    background-color: #c0392b;
+    color: white;
+    text-decoration: none; /* Remove the underline from the link */
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.thank-you-button .submit-button:hover {
+    background-color: #a93226;
+}
