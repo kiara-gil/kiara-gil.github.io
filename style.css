@@ -1,80 +1,155 @@
+/* General Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-  scroll-behavior: smooth;
-  overflow: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  scroll-snap-type: y mandatory;
-  /* Enables snapping on the y-axis */
-  overflow-y: auto;
-  /* Allows scrolling */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f1e4;
+    margin: 0;
+    padding: 10px;
+    padding-top: 50px; /* Added more space from the top of the screen */
 }
 
-.content {
-  max-width: 80%;
-  /* Max width to avoid text stretching too far on wide screens */
-  text-align: center;
-
+/* Header Styling */
+.header {
+    text-align: center;
+    margin-bottom: 30px; /* Increased space below the header */
 }
 
-.section {
-  min-height: 100vh;
-  width: 100%;
-  scroll-snap-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Snap each section to the start of the viewport */
+.header h1 {
+    color: #c0392b;
+    font-size: 32px;
 }
 
-.title {
-  font-family: 'Courier New', sans-serif;
-  font-weight: bold;
-  font-size: max(3.75vw, 15px);
-  /* Scalable font size based on the viewport width */
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-align: center;
+.header p {
+    font-size: 14px;
+    color: #555;
 }
 
-.subtitle {
-  font-family: 'Courier New', sans-serif;
-  font-size: max(1.25vw, 12px);
-  /* Slightly smaller than the main message */
-  color: white;
-  margin-top: 20px;
-  line-height: 1.4;
-  font-weight: normal;
-  text-transform: none;
+/* Carousel Styles */
+.carousel {
+    width: 50%;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px; /* Space between carousel and form */
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center; /* Center the carousel content */
+    align-items: center; /* Center the image inside the carousel */
 }
 
-.section1 {
-  background-color: #1e2e16;
-  /* Dark blue */
+/* Maintain 5:4 aspect ratio */
+.carousel::before {
+    content: "";
+    display: block;
+    padding-top: 80%; /* 5:4 ratio (height = 80% of the width) */
 }
 
-.section2 {
-  background-color: #456a35;
-  /* Medium blue */
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 1s ease-in-out;
 }
 
-.section3 {
-  background-color: #93bf80;
-  /* Light blue */
+.carousel img.active {
+    opacity: 1;
 }
 
-.section4 {
-  background-color: #c0dab6;
-  /* Light blue */
+.carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.carousel button.prev {
+    left: 10px;
+}
+
+.carousel button.next {
+    right: 10px;
+}
+
+/* Form Styles */
+.form-container {
+    background: #fdf7e3;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px; /* Added space after the form */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.form-group input, 
+.form-group select,
+.form-group textarea {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #fffaf0;
+    font-size: 14px;
+}
+
+/* Special styling for the "NOTE" textarea */
+.form-group textarea {
+    resize: vertical; /* Allow resizing vertically */
+    min-height: 100px; /* Set a minimum height */
+}
+
+.form-group select option[disabled] {
+    color: #555;
+    background-color: #f0f0f0;
+}
+
+.form-group select {
+    color: #555;  /* Normal color for selected options */
+}
+
+.price-display {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #c0392b;
+}
+
+.submit-button {
+    width: 95%;
+    padding: 10px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.submit-button:hover {
+    background-color: #a93226;
 }
