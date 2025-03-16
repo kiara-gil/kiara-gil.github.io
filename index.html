@@ -1,44 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snap Scrolling Sections</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-  <section class="section section1">
-    <div class="content">
-      <div class="title">Under Construction</div>
-      <div class="subtitle">This webpage will hold any and all of my projects.
-      </div>
-    </div>
-  </section>
-  <section class="section section2">
-    <div class="content">
-      <div class="title">PROJECT TYPE</div>
-      <div class="subtitle">
-      </div>
-  </section>
-
-  <section class="section section3">
-    <div class="content">
-      <div class="title">PROJECT TYPE</div>
-      <div class="subtitle">
-      </div>
-  </section>
-  <section class="section section4">
-    <div class="title">PROJECT TYPE</div>
-    <div class="subtitle">
-    </div>
-  </section>
-</body>
-
-</html>
- -->
-
+<!-- 
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,4 +12,146 @@
 </head>
 <body>
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLDSF Order Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>TO LIVE AND DIE IN SF</h1>
+        <p>Choose your preferred format and complete the order below.</p>
+    </div>
+    <div class="carousel">
+        <img src="Desktop/COVER MOCK.jpg" class="active" alt="Book Image">
+        <img src="Desktop/INNER MOCK B.jpg" alt="Placeholder Image 2">
+        <img src="Desktop/INNER MOCK C.jpg" alt="Placeholder Image 3">
+        <img src="Desktop/INNER MOCK A.jpg" alt="Placeholder Image 1">
+        <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+        <button class="next" onclick="changeImage(1)">&#10095;</button>
+    </div>
+    
+    <div class="form-container">
+        <form method="post" action="https://script.google.com/macros/s/AKfycbytP8AISkdWv-gTRSSx_6-Ye5aJ6qVKn-MLLKfIqw2mCZ4vBkPIWU5UzNOC8aDyKHDvVA/exec" id="order-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <input type="text" id="name" name="NAME" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="EMAIL" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="phone" name="PHONE" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="address" name="ADDRESS" placeholder="123 Street, State, Zip Code" required>
+            </div>
+            <div class="form-group">
+                <select id="cover" name="COVER" required onchange="updatePrice()">
+                    <option value="" disabled selected>Cover Options...</option>
+                    <option value="softcover">Softcover - $30</option>
+                    <option value="hardcover">Hardcover - $38</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" id="quantity" name="QUANTITY" placeholder="Quantity" min="1" required>
+            </div>
+            <div class="form-group">
+                <select id="payment" name="PAYMENT" required>
+                    <option value="" disabled selected>Payment Option...</option>
+                    <option value="zelle">Zelle</option>
+                    <option value="venmo">Venmo</option>
+                    <option value="cashapp">Cash App</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea id="note" name="NOTE" placeholder="Any additional notes..." rows="4"></textarea>
+            </div>
+            <div class="price-display" id="price-display">Price: $30</div>
+            <button type="submit" class="submit-button" id="submit-btn">Send Order</button>
+        </form>
+    </div>
+
+<script>
+let index = 0;
+
+function rotateImages() {
+    const images = document.querySelectorAll(".carousel img");
+    setInterval(() => {
+        images.forEach(img => img.classList.remove("active"));
+        images[index].classList.add("active");
+        index = (index + 1) % images.length;
+    }, 3000); // Automatic rotation every 3 seconds
+}
+
+function changeImage(direction) {
+    const images = document.querySelectorAll(".carousel img");
+    images[index].classList.remove("active");
+    index = (index + direction + images.length) % images.length; // Loop around if index goes out of bounds
+    images[index].classList.add("active");
+}
+
+function updatePrice() {
+    const coverType = document.getElementById("cover").value;
+    const priceDisplay = document.getElementById("price-display");
+    let price = coverType === "hardcover" ? 38 : 30;
+    priceDisplay.textContent = `Price: $${price}`;
+}
+
+// Initialize the image carousel when the page loads
+window.onload = function() {
+    rotateImages();
+};
+
+// Handle the form submission
+function handleSubmit(event) {
+    event.preventDefault(); // Prevent the form from submitting immediately (default behavior)
+    const submitButton = document.getElementById('submit-btn');
+    submitButton.disabled = true; // Disable the submit button
+    submitButton.textContent = 'Sending...'; // Change button text to "Sending..."
+
+    // Submit the form data to Google Sheets using fetch
+    const form = document.getElementById('order-form');
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log("Response status:", response.status);
+
+        // Check for successful response (status code 200)
+        if (response.ok) {
+            return response.text(); // Proceed to the next step if response is ok
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .then(data => {
+        console.log("Form submission successful:", data);
+
+        // Clear the form after submission
+        form.reset();
+
+        // Redirect to thankyou.html after successful submission
+        setTimeout(() => {
+            window.location.href = 'thankyou.html';  // Redirect after a slight delay
+        }, 1000);  // 1 second delay before redirect
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        submitButton.disabled = false; // Re-enable the submit button
+        submitButton.textContent = 'Try Again'; // Change the button text back to "Try Again"
+    });
+}
+</script>
+
+</body>
 </html>
+
+
