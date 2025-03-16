@@ -109,7 +109,7 @@ function updatePrice() {
     const coverType = document.getElementById("cover").value;
     const priceDisplay = document.getElementById("price-display");
     let price = coverType === "hardcover" ? 38 : 30;
-    priceDisplay.textContent = `Price: $${price}`;
+    priceDisplay.textContent = `Price: $${price} (includes shipping)`;
 }
 
 function handleSubmit(event) {
